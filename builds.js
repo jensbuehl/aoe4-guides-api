@@ -43,4 +43,23 @@
  *         status: running
  */
 
-//TODO:  Add handlers here!
+import { db } from "./firebase.js";
+
+export async function getAll(req, res) {
+  const snapshot = await db.collection("builds").limit(10).get();
+  res.send(snapshot.docs.map(doc => doc.data()));
+}
+
+export function getById(req, res) {
+  res.send("I was here! getById");
+}
+
+export function getFavorites(req, res) {
+  res.send("I was here! getFavorites");
+}
+
+export default {
+  getAll,
+  getById,
+  getFavorites,
+};

@@ -1,7 +1,8 @@
-const express = require("express");
-const swagger = require("./swagger");
-const app = express();
+import express from 'express';
+import swagger from './swagger.js';
+import {getAll, getById, getFavorites} from './builds.js';
 
+const app = express();
 app.use(express.json());
 
 /**
@@ -52,7 +53,7 @@ app.get("/status", (req, res) => {
  *             schema: 
  *               $ref: '#/components/schemas/build'
  */
-app.get('/builds', (req, res) => {})
+app.get('/builds', (req, res) => getAll(req, res))
 
 /**
  * @openapi
@@ -67,7 +68,7 @@ app.get('/builds', (req, res) => {})
  *             schema: 
  *               $ref: '#/components/schemas/build'
  */
-app.get('/builds/:buildId', (req, res) => {})
+app.get('/builds/:buildId', (req, res) => getById(req, res))
 
 /**
  * @openapi
@@ -83,7 +84,7 @@ app.get('/builds/:buildId', (req, res) => {})
  *             schema: 
  *               $ref: '#/components/schemas/build'
  */
-app.get('/favorites/:userId', (req, res) => {})
+app.get('/favorites/:userId', (req, res) => getFavorites(req, res))
 
 swagger(app);
 
