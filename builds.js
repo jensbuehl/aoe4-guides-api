@@ -85,6 +85,10 @@
  */
 
 import { db } from "./firebase.js";
+import converter from "./converter.js";
+const { convert } = converter();
+
+
 
 export async function getById(req, res) {
   const snapshot = await db.collection("builds").doc(req.params.buildId);
@@ -94,7 +98,7 @@ export async function getById(req, res) {
   } else {
     //convert to overlay format
     if (req.query.overlay) {
-      res.send("Conversion not implemented, yet");
+      res.send(convert(doc.data()))
     } else {
       res.send(doc.data());
     }
@@ -120,7 +124,7 @@ export async function getAll(req, res) {
 
   //convert to overlay format
   if (req.query.overlay) {
-    res.send("Conversion not implemented, yet");
+    res.send(snapshot.docs.map((doc) => convert(doc.data())));
   } else {
     res.send(snapshot.docs.map((doc) => doc.data()));
   }
@@ -149,7 +153,7 @@ export async function getFavorites(req, res) {
 
     //convert to overlay format
     if (req.query.overlay) {
-      res.send("Conversion not implemented, yet");
+      res.send(snapshot.docs.map((doc) => convert(doc.data())));
     } else {
       res.send(snapshot.docs.map((doc) => doc.data()));
     }
