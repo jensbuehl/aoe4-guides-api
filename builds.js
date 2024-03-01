@@ -45,17 +45,74 @@
 
 import { db } from "./firebase.js";
 
+export async function getById(req, res) {
+  const snapshot = await db.collection("builds").doc(req.params.buildId);
+  const doc = await snapshot.get();
+  if (!doc.exists) {
+    res.sendStatus(404);
+  } else {
+    //convert to overlay format
+    if (req.query.overlay) {
+      res.send("Conversion not implemented, yet");
+    } else {
+      res.send(doc.data());
+    }
+  }
+}
+
 export async function getAll(req, res) {
-  const snapshot = await db.collection("builds").limit(10).get();
-  res.send(snapshot.docs.map(doc => doc.data()));
+  //Always set a limit to avoid crawling all data and cut firestore read costs
+  var query = db.collection("builds").limit(10);
+  //filter civilization
+  if (req.query.civ) {
+    query = query.where("civ", "in", [req.query.civ]);
+  }
+  //filter author
+  if (req.query.author) {
+    query = query.where("authorUid", "in", [req.query.author]);
+  }
+  //orderBy
+  if (req.query.orderBy) {
+    query = query.orderBy(req.query.orderBy, "desc");
+  }
+  const snapshot = await query.get();
+
+  //convert to overlay format
+  if (req.query.overlay) {
+    res.send("Conversion not implemented, yet");
+  } else {
+    res.send(snapshot.docs.map((doc) => doc.data()));
+  }
 }
 
-export function getById(req, res) {
-  res.send("I was here! getById");
-}
+export async function getFavorites(req, res) {
+  const snapshot = await db.collection("favorites").doc(req.params.userId);
+  const user = await snapshot.get();
+  if (!user.exists) {
+    res.sendStatus(404);
+  } else {
+    //Always set a limit to avoid crawling all data and cut firestore read costs
+    var query = await db
+      .collection("builds")
+      .where("id", "in", user.data().favorites)
+      .limit(10);
+    //filter civilization
+    if (req.query.civ) {
+      query = query.where("civ", "in", [req.query.civ]);
+    }
+    //orderBy
+    if (req.query.orderBy) {
+      query = query.orderBy(req.query.orderBy, "desc");
+    }
+    const snapshot = query.get();
 
-export function getFavorites(req, res) {
-  res.send("I was here! getFavorites");
+    //convert to overlay format
+    if (req.query.overlay) {
+      res.send("Conversion not implemented, yet");
+    } else {
+      res.send(snapshot.docs.map((doc) => doc.data()));
+    }
+  }
 }
 
 export default {
