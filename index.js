@@ -52,6 +52,11 @@ app.get("/status", (req, res) => {
  *           type: string
  *         description: The author's user id
  *       - in: query
+ *         name: civ
+ *         schema:
+ *           type: string
+ *         description: 3 digit civ identifier to filter per civ (ABB, AYY, BYZ, CHI, DEL, ENG, FRE, HRE, JAP, JDA, MAL, MON, DRA, OTT, RUS, ZXL)
+ *       - in: query
  *         name: orderBy
  *         schema:
  *           type: string
@@ -109,6 +114,11 @@ app.get('/builds/:buildId', (req, res) => getById(req, res))
  *         schema:
  *           type: string
  *         description: The author's user id
+ *       - in: query
+ *         name: civ
+ *         schema:
+ *           type: string
+ *         description: 3 digit civ identifier to filter per civ (ABB, AYY, BYZ, CHI, DEL, ENG, FRE, HRE, JAP, JDA, MAL, MON, DRA, OTT, RUS, ZXL)
  *       - in: query
  *         name: orderBy
  *         schema:
