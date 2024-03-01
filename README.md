@@ -4,6 +4,9 @@ This service provides a public REST api to access Age of Empires 4 build orders 
 ## api documentation 
 https://aoe4guides.com/api/api-docs/
 
+![image](https://github.com/jensbuehl/aoe4-guides-api/assets/3983913/fc0df529-6a6c-428c-b66c-9911c73d4106)
+
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
