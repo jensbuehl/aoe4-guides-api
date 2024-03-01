@@ -45,6 +45,22 @@ app.get("/status", (req, res) => {
  *     description: Get first 10 builds meeting critera in query parameters.
  *                  Get your builds by providing your user id as parameter.
  *                  By default, returning the 10 most recent builds.
+ *     parameters:
+ *       - in: query
+ *         name: author
+ *         schema:
+ *           type: string
+ *         description: The author's user id
+ *       - in: query
+ *         name: orderBy
+ *         schema:
+ *           type: string
+ *         description: The desired order (You may sort by score, timeCreated, views, likes)
+ *       - in: query
+ *         name: overlay
+ *         schema:
+ *           type: boolean
+ *         description: Set to true when you want the overlay tool JSON
  *     responses:
  *       200:
  *         description: Returns build order(s).
@@ -60,6 +76,17 @@ app.get('/builds', (req, res) => getAll(req, res))
  * /builds/{buildId}:
  *   get:
  *     description: Get build by id or error when specified build order is not found.
+ *     parameters:
+ *       - in: path
+ *         name: buildId
+ *         schema:
+ *           type: string
+ *         description: The build order id
+ *       - in: query
+ *         name: overlay
+ *         schema:
+ *           type: boolean
+ *         description: Set to true when you want the overlay tool JSON
  *     responses:
  *       200:
  *         description: Returns build order(s).
@@ -76,6 +103,22 @@ app.get('/builds/:buildId', (req, res) => getById(req, res))
  *   get:
  *     description: Get your first 10 favorites liked by the referred user and meeting filter and sort crietria. 
  *                  By default, returning the 10 most recent builds.
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         description: The author's user id
+ *       - in: query
+ *         name: orderBy
+ *         schema:
+ *           type: string
+ *         description: The desired order (You may sort by score, timeCreated, views, likes)
+ *       - in: query
+ *         name: overlay
+ *         schema:
+ *           type: boolean
+ *         description: Set to true when you want the overlay tool JSON
  *     responses:
  *       200:
  *         description: Returns build order(s).

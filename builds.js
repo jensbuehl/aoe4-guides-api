@@ -4,37 +4,78 @@
  *   schemas:
  *     build:
  *       type: object
- *       required:
- *         - title
- *         - author
- *         - finished
  *       properties:
  *         id:
  *           type: string
- *           description: The auto-generated id of the book
+ *           description: The auto-generated id of the build order
  *         title:
  *           type: string
- *           description: The title of your book
+ *           description: The title of the build order
+ *         description:
+ *           type: string
+ *           description: The description of the build order
+ *         video:
+ *           type: string
+ *           description: The youtube url of the build order
  *         author:
  *           type: string
- *           description: The book author
- *         finished:
- *           type: boolean
- *           description: Whether you have finished reading the book
- *         createdAt:
+ *           description: The author name
+ *         authorUid:
  *           type: string
- *           format: date
- *           description: The date the book was added
- *       example:
- *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         author: Alexander K. Dewdney
- *         finished: false
- *         createdAt: 2020-03-10T04:05:06.157Z
+ *           description: The author's id
+ *         season:
+ *           type: string
+ *           description: The original ranked ladder season the build order was created for
+ *         timeCreated:
+ *           type: string
+ *           description: Timestamp when the build order was created
+ *         steps:
+ *           type: array
+ *           items:
+ *             type: object 
+ *             $ref: '#/components/schemas/stepSection'
+ *     stepSection:
+ *       type: object
+ *       description: container for the  age dependent sections (e.g. aging up to feudal age)
+ *       properties:
+ *         type:
+ *           type: string
+ *           description: age when "in age" or ageUp when "aging up"
+ *         age:
+ *           type: integer
+ *           description: Age indicator. 0 if feature is not used. 1-4 otherwise.
+ *         steps:
+ *           type: array
+ *           items:
+ *             type: object 
+ *             $ref: '#/components/schemas/step'
+ *     step:
+ *       type: object
+ *       description: container for the actual build steps
+ *       properties:
+ *         builders:
+ *           type: string
+ *           description: Number of builders
+ *         gold:
+ *           type: string
+ *           description: Number of villagers assigned to gold
+ *         wood:
+ *           type: string
+ *           description: Number of villagers assigned to wood
+ *         stone:
+ *           type: string
+ *           description: Number of villagers assigned to stone
+ *         food:
+ *           type: string
+ *           description: Number of villagers assigned to food
+ *         time:
+ *           type: string
+ *           description: Textual timestamp
+ *         description:
+ *           type: string
+ *           description: Textual description of the build step including images
  *     status:
  *       type: object
- *       required:
- *         - status
  *       properties:
  *         status:
  *           type: string
