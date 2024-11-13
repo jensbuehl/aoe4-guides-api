@@ -1,9 +1,17 @@
 import express from 'express';
+import cors from 'cors';
 import swagger from './swagger.js';
 import {getAll, getById, getFavorites} from './builds.js';
 
 const app = express();
-app.use(express.json());
+app.use(express.json(), cors());
+
+const corsOptions = {
+  "origin": "*",
+  "optionsSuccessStatus": 200
+};
+
+app.use(cors(corsOptions));
 
 /**
  * @openapi
