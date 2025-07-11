@@ -87,6 +87,7 @@ export default function converter() {
       description = description.replaceAll("&nbsp;", " ");
       description = description.replaceAll("&gt;", ">");
       description = description.replaceAll("</img>", "");
+      description = description.replaceAll(".png", ".webp");
       const regex = /<img([\w\W]+?)>/g;
       const convertedDescription = description.replace(
         regex,
