@@ -122,6 +122,16 @@ export default function converter() {
       JDA: "Jeanne d'Arc",
       ZXL: "Zhu Xi's Legacy",
       DRA: "Order of the Dragon",
+      //Sultans Ascend
+      BYZ: "Byzantines",
+      JAP: "Japanese",
+      AYY: "Ayyubids",
+      JDA: "Jeanne d'Arc",
+      ZXL: "Zhu Xi's Legacy",
+      DRA: "Order of the Dragon",
+      //Knights of Cross and Rose
+      HOL: "House of Lancaster",
+      KTE: "Knights Templar",
     };
   
     return {
