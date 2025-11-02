@@ -133,6 +133,11 @@ export default function converter() {
       //Knights of Cross and Rose
       HOL: "House of Lancaster",
       KTE: "Knights Templar",
+      //Dynasties of the East
+      GOH: "Golden Horde",
+      SEN: "Sengoku Daimyo",
+      MAC: "Macedonian Dynasty",
+      TUG: "Tughlaq Dynasty"
     };
   
     return {
