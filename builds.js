@@ -97,7 +97,8 @@ export async function getById(req, res) {
     res.sendStatus(404);
   } else {
     //convert to overlay format
-    if (req.query.overlay) {
+    const useOverlay = req.query.overlay === 'true' || req.query.overlay === true;
+    if (useOverlay) {
       res.send(convert(doc.data()))
     } else {
       res.send(doc.data());
@@ -123,7 +124,8 @@ export async function getAll(req, res) {
   const snapshot = await query.get();
 
   //convert to overlay format
-  if (req.query.overlay) {
+  const useOverlay = req.query.overlay === 'true' || req.query.overlay === true;
+  if (useOverlay) {
     res.send(snapshot.docs.map((doc) => convert(doc.data())));
   } else {
     res.send(snapshot.docs.map((doc) => doc.data()));
@@ -152,7 +154,8 @@ export async function getFavorites(req, res) {
     const snapshot = query.get();
 
     //convert to overlay format
-    if (req.query.overlay) {
+    const useOverlay = req.query.overlay === 'true' || req.query.overlay === true;
+    if (useOverlay) {
       res.send(snapshot.docs.map((doc) => convert(doc.data())));
     } else {
       res.send(snapshot.docs.map((doc) => doc.data()));

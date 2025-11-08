@@ -63,7 +63,7 @@ app.get("/status", (req, res) => {
  *         name: civ
  *         schema:
  *           type: string
- *         description: 3 digit civ identifier to filter per civ (ABB, AYY, BYZ, CHI, DEL, ENG, FRE, HOL, HRE, JAP, JDA, KTE, MAL, MON, DRA, OTT, RUS, ZXL)
+ *         description: 3 digit civ identifier to filter per civ (ABB, AYY, BYZ, CHI, DEL, DRA, ENG, FRE, GOH, HOL, HRE, JAP, JDA, KTE, MAC, MAL, MON, OTT, RUS, SEN, TUG, ZXL)
  *       - in: query
  *         name: orderBy
  *         schema:
@@ -99,7 +99,7 @@ app.get('/builds', (req, res) => getAll(req, res))
  *         name: overlay
  *         schema:
  *           type: boolean
- *         description: Set to true when you want the overlay tool JSON
+ *         description: Set to "true" to get overlay tool JSON format, "false" or omit for default format
  *     responses:
  *       200:
  *         description: Returns build order(s).
@@ -126,7 +126,7 @@ app.get('/builds/:buildId', (req, res) => getById(req, res))
  *         name: civ
  *         schema:
  *           type: string
- *         description: 3 digit civ identifier to filter per civ (ABB, AYY, BYZ, CHI, DEL, ENG, FRE, HOL, HRE, JAP, JDA, KTE, MAL, MON, DRA, OTT, RUS, ZXL)
+ *         description: 3 digit civ identifier to filter per civ (ABB, AYY, BYZ, CHI, DEL, DRA, ENG, FRE, GOH, HOL, HRE, JAP, JDA, KTE, MAC, MAL, MON, OTT, RUS, SEN, TUG, ZXL)
  *       - in: query
  *         name: orderBy
  *         schema:
@@ -136,7 +136,7 @@ app.get('/builds/:buildId', (req, res) => getById(req, res))
  *         name: overlay
  *         schema:
  *           type: boolean
- *         description: Set to true when you want the overlay tool JSON
+ *         description: Set to "true" to get overlay tool JSON format, "false" or omit for default format
  *     responses:
  *       200:
  *         description: Returns build order(s).

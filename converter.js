@@ -106,6 +106,7 @@ export default function converter() {
   
     const mapCivilizations = {
       ANY: "Any Civilization",
+      // Base Game Civilizations
       ENG: "English",
       FRE: "French",
       RUS: "Rus",
@@ -116,24 +117,17 @@ export default function converter() {
       OTT: "Ottomans",
       CHI: "Chinese",
       MON: "Mongols",
-      //Sultans Ascend
+      // The Sultans Ascend DLC
       BYZ: "Byzantines",
       JAP: "Japanese",
       AYY: "Ayyubids",
       JDA: "Jeanne d'Arc",
       ZXL: "Zhu Xi's Legacy",
       DRA: "Order of the Dragon",
-      //Sultans Ascend
-      BYZ: "Byzantines",
-      JAP: "Japanese",
-      AYY: "Ayyubids",
-      JDA: "Jeanne d'Arc",
-      ZXL: "Zhu Xi's Legacy",
-      DRA: "Order of the Dragon",
-      //Knights of Cross and Rose
+      // The Knights of the Cross and Crescent DLC
       HOL: "House of Lancaster",
       KTE: "Knights Templar",
-      //Dynasties of the East
+      // The Dynasties of the East DLC
       GOH: "Golden Horde",
       SEN: "Sengoku Daimyo",
       MAC: "Macedonian Dynasty",
