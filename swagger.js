@@ -6,7 +6,7 @@ const options = {
     openapi: '3.1.0',
     info: {
       title: 'aoe4guides API',
-      version: '1.0.0',
+      version: '1.12.0',
       description: 'REST API to access build orders from aoe4guides.com',
     },
     servers: [
