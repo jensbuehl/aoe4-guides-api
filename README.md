@@ -34,7 +34,11 @@ GET https://aoe4guides.com/api/builds/BUILD_ID
 GET https://aoe4guides.com/api/builds/BUILD_ID?overlay=true
 ```
 
-![image](https://github.com/jensbuehl/aoe4-guides-api/assets/3983913/fc0df529-6a6c-428c-b66c-9911c73d4106)
+![image](./assets/routes.png)
+
+All schemas are available for both normal and overlay build orders.
+
+![image](./assets/schemas.png)
 
 ## Recommended IDE Setup
 
