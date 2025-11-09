@@ -71,13 +71,9 @@ function convertImagePathToText(imageElement: string): string | undefined {
 
     if (!srcMatch) return undefined;
 
-    console.log(imageElement);
-
     let src = srcMatch[1]
         .replace(DOMAIN_PREFIX_REGEX, "")
         .replace(ASSET_PATH_PREFIX_REGEX, "");
-
-    console.log(src);
 
     return `@${src}@`;
 }
@@ -134,7 +130,6 @@ function convertStepToOverlayFormat(step: DetailStep) {
  * Converts <img> tags to tokens and fixes common HTML entities.
  */
 function convertDescription(description: string): string[] {
-    console.log("oui")
     let normalized = description
         .replace("&amp;", "&")
         .replace("&nbsp;", " ")
