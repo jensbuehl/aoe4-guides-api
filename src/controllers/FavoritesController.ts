@@ -1,7 +1,7 @@
 import { Controller, Get, Path, Queries, Res, Route, SuccessResponse, Tags } from "tsoa";
-import { toOverlayBuild } from "../mappers";
+import { toOverlayBuildOrder } from "../mappers";
 import { BuildOrder, BuildOrders } from "../models";
-import { BuildQuery, NotFoundResponse, OverlayBuilds } from "../types";
+import { BuildQuery, NotFoundResponse, OverlayBuildOrderOrders } from "../types";
 import db from "../db";
 
 
@@ -14,7 +14,7 @@ export class FavoritesController extends Controller {
      */
     @Get("{userId}")
     @SuccessResponse("200", "OK")
-    public async getUserFavorites(@Path() userId: string, @Queries() q: BuildQuery, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrders | OverlayBuilds> {
+    public async getUserFavorites(@Path() userId: string, @Queries() q: BuildQuery, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrders | OverlayBuildOrderOrders> {
         const snapshot = db.collection("favorites").doc(userId);
         const user = await snapshot.get();
 
@@ -40,7 +40,7 @@ export class FavoritesController extends Controller {
         const builds = await query.get();
 
         if (q.overlay)
-            return builds.docs.map((doc) => toOverlayBuild(doc.data() as BuildOrder));
+            return builds.docs.map((doc) => toOverlayBuildOrder(doc.data() as BuildOrder));
 
         return builds.docs.map((doc) => doc.data() as BuildOrder);
     }

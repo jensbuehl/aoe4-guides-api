@@ -1,5 +1,5 @@
-import { BuildOrder, BuildOrderStep, DetailStep } from "../models";
-import { Civilization, CivilizationNames, OverlayBuild } from "../types";
+import { BuildOrder, BuildOrderStep, BuildOrderStepDetail } from "../models";
+import { Civilization, CivilizationNames, OverlayBuildOrder } from "../types";
 
 const PATH_REGEX = /src\s*=\s*"([^"]+)"/i;
 const DOMAIN_PREFIX_REGEX = /^https?:\/\/(localhost:\d+|aoe4guides\.com)/;
@@ -8,7 +8,7 @@ const IMAGE_TAG_REGEX = /<img(.*?)>/gs;
 const HTML_BREAK_REGEX = /<br\s*\/?>/gi;
 const CARRIAGE_RETURN_REGEX = /\r\n?/g;
 
-export function toOverlayBuild(build: BuildOrder): OverlayBuild {
+export function toOverlayBuildOrder(build: BuildOrder): OverlayBuildOrder {
     const steps = build.steps[0]?.type
         ? convertSectionsToSteps(build.steps)
         : build.steps;
@@ -84,7 +84,7 @@ function convertImagePathToText(imageElement: string): string | undefined {
  * @param step - The resource counts for a specific build step.
  * @returns The total villagers, or -1 if all values are missing/invalid.
  */
-function aggregateVillagers(step: DetailStep): number {
+function aggregateVillagers(step: BuildOrderStepDetail): number {
     const resources = ["builders", "food", "wood", "gold", "stone"] as const;
 
     const total = resources.reduce((sum, key) => {
@@ -104,7 +104,7 @@ function aggregateVillagers(step: DetailStep): number {
  * @param step - The build step to convert.
  * @returns The overlay-compatible step object.
  */
-function convertStepToOverlayFormat(step: DetailStep) {
+function convertStepToOverlayFormat(step: BuildOrderStepDetail) {
     const notes = convertDescription(step.description ?? "");
     const time = step.time?.replaceAll("<br>", "");
 

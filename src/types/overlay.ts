@@ -5,7 +5,7 @@
  * and the ordered list of build steps.
 
      */
-export interface OverlayBuild {
+export interface OverlayBuildOrder {
     /**
      * The display name or title of the build order.
      */
@@ -54,7 +54,7 @@ export interface OverlayBuild {
     /**
      * The ordered sequence of steps in this build.
      */
-    build_order: OverlayStep[];
+    build_order: OverlayBuildOrderStep[];
 }
 
 /**
@@ -64,7 +64,7 @@ export interface OverlayBuild {
  * containing resource allocations, population info, and notes.
 
      */
-export interface OverlayStep {
+export interface OverlayBuildOrderStep {
     /**
      * The current age during this step (e.g., 1–4).
      */
@@ -88,7 +88,7 @@ export interface OverlayStep {
     /**
      * The distribution of villagers across resources.
      */
-    resources: OverlayResources;
+    resources: OverlayBuildOrderStepDetail;
 
     /**
      * Descriptive notes or actions taken at this step.
@@ -96,12 +96,12 @@ export interface OverlayStep {
     notes: string[];
 }
 
-export interface OverlayStep {
+export interface OverlayBuildOrderStep {
     age: number;
     population_count: number;
     time?: string;
     villager_count: number;
-    resources: OverlayResources;
+    resources: OverlayBuildOrderStepDetail;
     notes: string[];
 }
 
@@ -110,7 +110,7 @@ export interface OverlayStep {
  * across various resources at a given build step.
 
      */
-export interface OverlayResources {
+export interface OverlayBuildOrderStepDetail {
     /**
      * Number of villagers assigned to food gathering.
      */
@@ -137,4 +137,4 @@ export interface OverlayResources {
     builder: number;
 }
 
-export type OverlayBuilds = Array<OverlayBuild>;
+export type OverlayBuildOrderOrders = Array<OverlayBuildOrder>;
