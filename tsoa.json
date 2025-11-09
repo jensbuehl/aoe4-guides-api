@@ -1,0 +1,25 @@
+{
+    "entryFile": "src/index.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "controllerPathGlobs": [
+        "src/controllers/**/*.ts"
+    ],
+    "spec": {
+        "outputDirectory": "public",
+        "specVersion": 3,
+        "outputFormat": "json",
+        "host": "localhost:8080",
+        "schemes": [
+            "http"
+        ],
+        "basePath": "/",
+        "info": {
+            "title": "aoe4guides API",
+            "version": "1.12.0",
+            "description": "REST API to access build orders from aoe4guides.com"
+        }
+    },
+    "routes": {
+        "routesDir": "src/generated"
+    }
+}
