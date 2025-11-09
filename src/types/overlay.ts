@@ -136,3 +136,5 @@ export interface OverlayResources {
      */
     builder: number;
 }
+
+export type OverlayBuilds = Array<OverlayBuild>;
