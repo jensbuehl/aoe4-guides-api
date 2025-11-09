@@ -1,7 +1,12 @@
 import { BuildOrder, BuildOrderStep, DetailStep } from "../models";
 import { Civilization, CivilizationNames } from "../types";
 
-const PATH_REGEX = new RegExp(/src\s*=\s*"([^"]+)"/i);
+const PATH_REGEX = /src\s*=\s*"([^"]+)"/i;
+const DOMAIN_PREFIX_REGEX = /^https?:\/\/(localhost:\d+|aoe4guides\.com)/;
+const ASSET_PATH_PREFIX_REGEX = /^\/?assets\/pictures\//;
+const IMAGE_TAG_REGEX = /<img(.*?)>/gs;
+const HTML_BREAK_REGEX = /<br\s*\/?>/gi;
+const CARRIAGE_RETURN_REGEX = /\r\n?/g;
 
 export function toOverlayBuild(build: BuildOrder): any {
     const steps = build.steps[0]?.type
@@ -69,8 +74,8 @@ function convertImagePathToText(imageElement: string): string | undefined {
     console.log(imageElement);
 
     let src = srcMatch[1]
-        .replace(/^https?:\/\/(localhost:\d+|aoe4guides\.com)/, "")
-        .replace(/^\/?assets\/pictures\//, "");
+        .replace(DOMAIN_PREFIX_REGEX, "")
+        .replace(ASSET_PATH_PREFIX_REGEX, "");
 
     console.log(src);
 
@@ -136,9 +141,9 @@ function convertDescription(description: string): string[] {
         .replace("&gt;", ">")
         .replace("</img>", "")
         .replace(".png", ".webp")
-        .replaceAll(/<img(.*?)>/gs, (match) => convertImagePathToText(match) ?? "")
-        .replaceAll(/<br\s*\/?>/g, "\n")
-        .replaceAll(/\r\n?/g, "\n");
+        .replaceAll(IMAGE_TAG_REGEX, (match) => convertImagePathToText(match) ?? "")
+        .replaceAll(HTML_BREAK_REGEX, "\n")
+        .replaceAll(CARRIAGE_RETURN_REGEX, "\n");
 
     return normalized
         .split("\n")
