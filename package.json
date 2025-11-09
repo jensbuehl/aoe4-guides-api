@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "server.js",
+  "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
     "prebuild": "tsoa spec-and-routes",
