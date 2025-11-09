@@ -1,7 +1,7 @@
 import { Controller, Get, Path, Queries, Res, Route, SuccessResponse, Tags } from "tsoa";
 import { toOverlayBuild } from "../mappers";
 import { BuildOrder, BuildOrders } from "../models";
-import { BuildQuery, NotFoundResponse } from "../types";
+import { BuildQuery, NotFoundResponse, OverlayBuilds } from "../types";
 import db from "../db";
 
 
@@ -14,7 +14,7 @@ export class FavoritesController extends Controller {
      */
     @Get("{userId}")
     @SuccessResponse("200", "OK")
-    public async getUserFavorites(@Path() userId: string, @Queries() q: BuildQuery, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrders> {
+    public async getUserFavorites(@Path() userId: string, @Queries() q: BuildQuery, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrders | OverlayBuilds> {
         const snapshot = db.collection("favorites").doc(userId);
         const user = await snapshot.get();
 

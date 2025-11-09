@@ -1,7 +1,7 @@
 import { Controller, Get, Route, SuccessResponse, Tags, Queries, Path, Res, Query } from "tsoa";
 import { toOverlayBuild } from "../mappers";
 import { BuildOrder, BuildOrders } from "../models";
-import { BuildQuery, NotFoundResponse } from "../types";
+import { BuildQuery, NotFoundResponse, OverlayBuild, OverlayBuilds } from "../types";
 import db from "../db";
 
 @Route("builds")
@@ -15,7 +15,7 @@ export class BuildController extends Controller {
      */
     @Get("/")
     @SuccessResponse("200", "OK")
-    public async getBuilds(@Queries() q: BuildQuery): Promise<BuildOrders> {
+    public async getBuilds(@Queries() q: BuildQuery): Promise<BuildOrders | OverlayBuilds> {
         let query = db.collection("builds").limit(10);
 
         if (q.civ)
@@ -41,7 +41,7 @@ export class BuildController extends Controller {
      */
     @Get("/{buildId}")
     @SuccessResponse("200", "OK")
-    public async getBuildById(@Path() buildId: string, @Query() overlay: boolean = false, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrder> {
+    public async getBuildById(@Path() buildId: string, @Query() overlay: boolean = false, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrder | OverlayBuild> {
         const snapshot = db.collection("builds").doc(buildId);
         const doc = await snapshot.get();
 

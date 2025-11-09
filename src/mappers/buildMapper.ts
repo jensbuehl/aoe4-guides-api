@@ -1,5 +1,5 @@
 import { BuildOrder, BuildOrderStep, DetailStep } from "../models";
-import { Civilization, CivilizationNames } from "../types";
+import { Civilization, CivilizationNames, OverlayBuild } from "../types";
 
 const PATH_REGEX = /src\s*=\s*"([^"]+)"/i;
 const DOMAIN_PREFIX_REGEX = /^https?:\/\/(localhost:\d+|aoe4guides\.com)/;
@@ -8,14 +8,14 @@ const IMAGE_TAG_REGEX = /<img(.*?)>/gs;
 const HTML_BREAK_REGEX = /<br\s*\/?>/gi;
 const CARRIAGE_RETURN_REGEX = /\r\n?/g;
 
-export function toOverlayBuild(build: BuildOrder): any {
+export function toOverlayBuild(build: BuildOrder): OverlayBuild {
     const steps = build.steps[0]?.type
         ? convertSectionsToSteps(build.steps)
         : build.steps;
     const civ = build.civ as Civilization | undefined;
 
     return {
-        description: build.description,
+        description: build.description ?? "",
         civilization: civ ? CivilizationNames[civ] : "",
         name: build.title,
         author: build.author,
