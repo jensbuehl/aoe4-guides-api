@@ -10,6 +10,7 @@ import db from "../db";
 export class FavoritesController extends Controller {
     /**
      * Get user's favorite builds
+     * @summary Get user's favorite builds
      * @param userId The user's identifier
      */
     @Get("{userId}")
