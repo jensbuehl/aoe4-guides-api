@@ -120,7 +120,7 @@ export interface BuildOrderStep {
     /**
      * The age indicator (0 if unused, otherwise 1–4).
      */
-    age?: string;
+    age?: number;
 
     /**
      * Age type: "in age" or "ageUp" when aging up.
@@ -133,10 +133,20 @@ export interface BuildOrderStep {
     steps: DetailStep[];
 }
 
+export interface Timestamp {
+    _seconds: number;
+    _nanoseconds: number;
+}
+
 /**
  * Represents an individual detailed step within a build phase.
  */
 export interface DetailStep {
+    /**
+     * The age indicator (0 if unused, otherwise 1–4).
+     */
+    age?: number;
+
     /**
      * Number of villagers.
      */
