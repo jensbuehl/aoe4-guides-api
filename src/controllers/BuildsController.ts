@@ -1,4 +1,5 @@
-import { Controller, Get, Route, SuccessResponse, Tags, Queries, Path, Res } from "tsoa";
+import { Controller, Get, Route, SuccessResponse, Tags, Queries, Path, Res, Query } from "tsoa";
+import { toOverlayBuild } from "../mappers";
 import { BuildOrder, BuildOrders } from "../models";
 import { BuildQuery, NotFoundResponse } from "../types";
 import db from "../db";
@@ -28,6 +29,9 @@ export class BuildController extends Controller {
 
         const snapshot = await query.get();
 
+        if (q.overlay)
+            return snapshot.docs.map((doc) => toOverlayBuild(doc.data() as BuildOrder));
+
         return snapshot.docs.map((doc) => doc.data() as BuildOrder);
     }
 
@@ -37,12 +41,15 @@ export class BuildController extends Controller {
      */
     @Get("/{buildId}")
     @SuccessResponse("200", "OK")
-    public async getBuildById(@Path() buildId: string, @Queries() q: BuildQuery, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrder> {
+    public async getBuildById(@Path() buildId: string, @Query() overlay: boolean = false, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrder> {
         const snapshot = db.collection("builds").doc(buildId);
         const doc = await snapshot.get();
 
         if (!doc.exists)
             return notFoundResponse(404, { reason: "" });
+
+        if (overlay)
+            return toOverlayBuild(doc.data() as BuildOrder);
 
         return doc.data() as BuildOrder;
     }

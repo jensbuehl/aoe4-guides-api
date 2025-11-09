@@ -1,4 +1,5 @@
 import { Controller, Get, Path, Queries, Res, Route, SuccessResponse, Tags } from "tsoa";
+import { toOverlayBuild } from "../mappers";
 import { BuildOrder, BuildOrders } from "../models";
 import { BuildQuery, NotFoundResponse } from "../types";
 import db from "../db";
@@ -37,6 +38,9 @@ export class FavoritesController extends Controller {
             query = query.orderBy(q.orderBy, "desc");
 
         const builds = await query.get();
+
+        if (q.overlay)
+            return builds.docs.map((doc) => toOverlayBuild(doc.data() as BuildOrder));
 
         return builds.docs.map((doc) => doc.data() as BuildOrder);
     }
