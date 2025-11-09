@@ -1,7 +1,7 @@
 import { Controller, Get, Route, SuccessResponse, Tags, Queries, Path, Res, Query } from "tsoa";
-import { toOverlayBuild } from "../mappers";
+import { toOverlayBuildOrder } from "../mappers";
 import { BuildOrder, BuildOrders } from "../models";
-import { BuildQuery, NotFoundResponse, OverlayBuild, OverlayBuilds } from "../types";
+import { BuildQuery, NotFoundResponse, OverlayBuildOrder, OverlayBuildOrderOrders } from "../types";
 import db from "../db";
 
 @Route("builds")
@@ -15,7 +15,7 @@ export class BuildController extends Controller {
      */
     @Get("/")
     @SuccessResponse("200", "OK")
-    public async getBuilds(@Queries() q: BuildQuery): Promise<BuildOrders | OverlayBuilds> {
+    public async getBuilds(@Queries() q: BuildQuery): Promise<BuildOrders | OverlayBuildOrderOrders> {
         let query = db.collection("builds").limit(10);
 
         if (q.civ)
@@ -30,7 +30,7 @@ export class BuildController extends Controller {
         const snapshot = await query.get();
 
         if (q.overlay)
-            return snapshot.docs.map((doc) => toOverlayBuild(doc.data() as BuildOrder));
+            return snapshot.docs.map((doc) => toOverlayBuildOrder(doc.data() as BuildOrder));
 
         return snapshot.docs.map((doc) => doc.data() as BuildOrder);
     }
@@ -41,7 +41,7 @@ export class BuildController extends Controller {
      */
     @Get("/{buildId}")
     @SuccessResponse("200", "OK")
-    public async getBuildById(@Path() buildId: string, @Query() overlay: boolean = false, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrder | OverlayBuild> {
+    public async getBuildById(@Path() buildId: string, @Query() overlay: boolean = false, @Res() notFoundResponse: NotFoundResponse): Promise<BuildOrder | OverlayBuildOrder> {
         const snapshot = db.collection("builds").doc(buildId);
         const doc = await snapshot.get();
 
@@ -49,7 +49,7 @@ export class BuildController extends Controller {
             return notFoundResponse(404, { reason: "" });
 
         if (overlay)
-            return toOverlayBuild(doc.data() as BuildOrder);
+            return toOverlayBuildOrder(doc.data() as BuildOrder);
 
         return doc.data() as BuildOrder;
     }

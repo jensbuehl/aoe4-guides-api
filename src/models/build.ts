@@ -130,7 +130,7 @@ export interface BuildOrderStep {
     /**
      * The list of detailed steps for this phase.
      */
-    steps: DetailStep[];
+    steps: BuildOrderStepDetail[];
 }
 
 export interface Timestamp {
@@ -141,7 +141,7 @@ export interface Timestamp {
 /**
  * Represents an individual detailed step within a build phase.
  */
-export interface DetailStep {
+export interface BuildOrderStepDetail {
     /**
      * The age indicator (0 if unused, otherwise 1–4).
      */
