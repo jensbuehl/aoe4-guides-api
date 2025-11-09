@@ -69,6 +69,20 @@ npm build && npm start
 
 The server will start on port 8080 by default, or use the PORT environment variable.
 
+## Docker
+
+### Build the Docker image
+
+```sh
+docker build -t aoe4guides-api .
+```
+
+### Run the Docker container
+
+```sh
+docker run -p 8080:8080 aoe4guides-api
+```
+
 ## License
 
 The project is licensed under MIT.
