@@ -9,8 +9,8 @@
         "specVersion": 3,
         "outputFormat": "json",
         "name": "aoe4guides API",
-        "version": "1.14.2",
-        "description": "The public REST API for [aoe4guides.com](https://aoe4guides.com) — programmatic, read-only access to community-created **Age of Empires IV** build orders.\n\nFetch build orders in the full schema or the compact **overlay** format used by in-game build-order tools, filter by civilization or author, and sort by score, recency, views or likes.\n\n**Good to know**\n- Open and read-only — no authentication or API key required.\n- Each list endpoint returns at most 10 results; there is no pagination yet.\n- Civilizations use 3-letter codes (e.g. `ENG`, `FRE`, `JIN`); see the `Civilization` schema for the full list.",
+        "version": "1.14.3",
+        "description": "The public REST API for [aoe4guides.com](https://aoe4guides.com) — programmatic, read-only access to community-created **Age of Empires IV** build orders.\n\nFetch build orders in the full schema or the compact **overlay** format used by in-game build-order tools, filter by civilization or author, and sort by score, recency, views or likes.\n\n**Good to know**\n- Open and read-only — no authentication or API key required.\n- Each list endpoint returns at most 10 results; there is no pagination yet.\n- Civilizations use 3-letter codes (e.g. `ENG`, `FRE`, `JIN`); see the `Civilization` schema for the full list.\n\n© 2024 Jens Bühl · [MIT licensed](https://github.com/jensbuehl/aoe4-guides-api/blob/HEAD/LICENSE)",
         "license": "MIT",
         "contact": {
             "name": "aoe4guides",
@@ -27,7 +27,7 @@
             "info": {
                 "license": {
                     "name": "MIT",
-                    "url": "https://opensource.org/license/mit"
+                    "url": "https://github.com/jensbuehl/aoe4-guides-api/blob/HEAD/LICENSE"
                 }
             }
         }
