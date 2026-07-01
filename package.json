@@ -1,7 +1,7 @@
 {
   "name": "aoe4-guides-api",
   "type": "commonjs",
-  "version": "1.14.1",
+  "version": "1.14.2",
   "private": true,
   "main": "server.js",
   "license": "MIT",
