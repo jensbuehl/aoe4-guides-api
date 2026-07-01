@@ -9,7 +9,7 @@
         "specVersion": 3,
         "outputFormat": "json",
         "name": "aoe4guides API",
-        "version": "1.13.0",
+        "version": "1.14.0",
         "description": "REST API to access build orders from aoe4guides.com",
         "license": "MIT",
         "contact": {
