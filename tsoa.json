@@ -9,8 +9,8 @@
         "specVersion": 3,
         "outputFormat": "json",
         "name": "aoe4guides API",
-        "version": "1.14.0",
-        "description": "REST API to access build orders from aoe4guides.com",
+        "version": "1.14.1",
+        "description": "The public REST API for [aoe4guides.com](https://aoe4guides.com) — programmatic, read-only access to community-created **Age of Empires IV** build orders.\n\nFetch build orders in the full schema or the compact **overlay** format used by in-game build-order tools, filter by civilization or author, and sort by score, recency, views or likes.\n\n**Good to know**\n- Open and read-only — no authentication or API key required.\n- Each list endpoint returns at most 10 results; there is no pagination yet.\n- Civilizations use 3-letter codes (e.g. `ENG`, `FRE`, `JIN`); see the `Civilization` schema for the full list.",
         "license": "MIT",
         "contact": {
             "name": "aoe4guides",
