@@ -9,7 +9,7 @@ The API supports all Age of Empires IV civilizations including:
 - **Base Game**: English (ENG), French (FRE), Rus (RUS), Malians (MAL), Delhi Sultanate (DEL), Holy Roman Empire (HRE), Abbasid Dynasty (ABB), Ottomans (OTT), Chinese (CHI), Mongols (MON)
 - **The Sultans Ascend DLC**: Byzantines (BYZ), Japanese (JAP), Ayyubids (AYY), Jeanne d'Arc (JDA), Zhu Xi's Legacy (ZXL), Order of the Dragon (DRA)
 - **The Knights of the Cross and Crescent DLC**: House of Lancaster (HOL), Knights Templar (KTE)
-- **The Dynasties of the East DLC**: Golden Horde (GOH), Sengoku Daimyo (SEN), Macedonian Dynasty (MAC), Tughlaq Dynasty (TUG)
+- **The Dynasties of the East DLC**: Golden Horde (GOH), Sengoku Daimyo (SEN), Macedonian Dynasty (MAC), Tughlaq Dynasty (TUG), Jin Dynasty (JIN)
 
 ## API Documentation
 

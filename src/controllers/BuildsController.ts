@@ -8,9 +8,10 @@ import db from "../db";
 @Tags("Builds")
 export class BuildController extends Controller {
     /**
-     * Get first 10 builds meeting critera in query parameters.
-     * Get your builds by providing your user id as parameter.
-     * By default, returning the 10 most recent builds.
+     * Get the first 10 builds meeting the criteria in the query parameters.
+     * Get your builds by providing your user id as the author parameter.
+     * Results are capped at 10 and there is no pagination.
+     * By default, returns the 10 most recent builds.
      * @summary Get all builds
      */
     @Get("/")

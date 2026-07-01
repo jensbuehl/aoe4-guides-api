@@ -29,6 +29,7 @@ export enum Civilization {
     SEN = "SEN",
     MAC = "MAC",
     TUG = "TUG",
+    JIN = "JIN",
 }
 
 /**
@@ -59,4 +60,5 @@ export const CivilizationNames: Record<Civilization, string> = {
     [Civilization.SEN]: "Sengoku Daimyo",
     [Civilization.MAC]: "Macedonian Dynasty",
     [Civilization.TUG]: "Tughlaq Dynasty",
+    [Civilization.JIN]: "Jin Dynasty",
 };
