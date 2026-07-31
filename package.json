@@ -5,7 +5,9 @@
   "private": true,
   "main": "server.js",
   "license": "MIT",
+  "packageManager": "npm@10.9.7",
   "scripts": {
+    "preinstall": "node -e \"const u=process.env.npm_config_user_agent||'';if(u&&!u.startsWith('npm/')){console.error('\\n  This project uses npm, not '+u.split('/')[0]+'. Other package managers ignore\\n  package-lock.json and re-resolve every range, drifting node_modules from the\\n  lock file. Run \\'npm ci\\' instead.\\n');process.exit(1)}\"",
     "start": "node dist/server.js",
     "prebuild": "tsoa spec-and-routes",
     "build": "tsc",
