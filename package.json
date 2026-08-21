@@ -1,7 +1,7 @@
 {
   "name": "aoe4-guides-api",
   "type": "commonjs",
-  "version": "1.14.3",
+  "version": "1.16.0",
   "private": true,
   "main": "server.js",
   "license": "MIT",
@@ -20,6 +20,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.6.2",
     "firebase-admin": "^13.6.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",

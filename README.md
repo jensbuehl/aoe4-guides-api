@@ -17,21 +17,27 @@ The API supports all Age of Empires IV civilizations including:
 
 ### Quick Start
 
+The base URL is the service's own host. `aoe4guides.com/api` is **not** a public
+base: the site proxies a single route there for its own use, and everything else
+under that path answers `404`.
+
 ```bash
+BASE=https://aoe4-guides-api-7h2vti5ckq-ey.a.run.app
+
 # Get latest 10 builds
-GET https://aoe4guides.com/api/builds
+GET $BASE/builds
 
 # Get builds for a specific civilization (e.g., English)
-GET https://aoe4guides.com/api/builds?civ=ENG
+GET $BASE/builds?civ=ENG
 
 # Get builds by author
-GET https://aoe4guides.com/api/builds?author=USER_ID
+GET $BASE/builds?author=USER_ID
 
 # Get a specific build
-GET https://aoe4guides.com/api/builds/BUILD_ID
+GET $BASE/builds/BUILD_ID
 
 # Get overlay format for build order tools
-GET https://aoe4guides.com/api/builds/BUILD_ID?overlay=true
+GET $BASE/builds/BUILD_ID?overlay=true
 ```
 
 ![image](./assets/routes.png)
@@ -39,6 +45,29 @@ GET https://aoe4guides.com/api/builds/BUILD_ID?overlay=true
 All schemas are available for both normal and overlay build orders.
 
 ![image](./assets/schemas.png)
+
+## Fair use
+
+The API stays open and unauthenticated, and it should be usable without asking
+anyone. Two guards keep that sustainable:
+
+- **Caching.** Responses carry `Cache-Control` and are served from a short
+  in-process cache: 60s for list endpoints, 5min for `/builds/{buildId}`. Please
+  respect it rather than re-fetching the same build on every page view of your
+  own site.
+- **Rate limits per IP.** 30/min and 300/hour for list endpoints, 120/min and
+  1200/hour for `/builds/{buildId}`. Over the limit the API answers `429`; the
+  `RateLimit` response headers show the remaining budget for each policy before
+  you get there.
+
+The limits sit an order of magnitude above what real integrations use - the
+busiest legitimate consumer in a measured month stayed under 20 requests per
+hour. If yours genuinely needs more, open an issue rather than working around
+them.
+
+If you build on this data, credit aoe4guides.com and link back. The build orders
+are written by its community.
+
 
 ## Recommended IDE Setup
 
