@@ -48,25 +48,19 @@ All schemas are available for both normal and overlay build orders.
 
 ## Fair use
 
-The API stays open and unauthenticated, and it should be usable without asking
-anyone. Two guards keep that sustainable:
+The API is free, unauthenticated, and paid for out of one person's pocket. It
+stays that way as long as people use it in proportion to what they need: honour
+`Cache-Control`, stay inside the per-IP rate limits, do not enumerate the whole
+corpus, and credit *and* link back to aoe4guides.com if you build on the data.
+If you need bulk data, open an issue or write to info (at) aoe4guides (dot) com
+rather than crawling for it.
 
-- **Caching.** Responses carry `Cache-Control` and are served from a short
-  in-process cache: 60s for list endpoints, 5min for `/builds/{buildId}`. Please
-  respect it rather than re-fetching the same build on every page view of your
-  own site.
-- **Rate limits per IP.** 30/min and 300/hour for list endpoints, 120/min and
-  1200/hour for `/builds/{buildId}`. Over the limit the API answers `429`; the
-  `RateLimit` response headers show the remaining budget for each policy before
-  you get there.
-
-The limits sit an order of magnitude above what real integrations use - the
-busiest legitimate consumer in a measured month stayed under 20 requests per
-hour. If yours genuinely needs more, open an issue rather than working around
-them.
-
-If you build on this data, credit aoe4guides.com and link back. The build orders
-are written by its community.
+The full terms, with the numbers behind them, are rendered at
+[aoe4guides.com/apidoc](https://aoe4guides.com/apidoc). That text is the
+canonical copy and it lives in `spec.description` in `tsoa.json` —
+`public/swagger.json` is generated from it by `prebuild` and is not committed.
+Deliberately not restated here: four copies of the same terms drift apart and
+then contradict each other, which is worse than one copy behind a link.
 
 
 ## Recommended IDE Setup
