@@ -30,6 +30,8 @@ export enum Civilization {
     MAC = "MAC",
     TUG = "TUG",
     JIN = "JIN",
+    VIK = "VIK",
+    SCO = "SCO",
 }
 
 /**
@@ -61,4 +63,6 @@ export const CivilizationNames: Record<Civilization, string> = {
     [Civilization.MAC]: "Macedonian Dynasty",
     [Civilization.TUG]: "Tughlaq Dynasty",
     [Civilization.JIN]: "Jin Dynasty",
+    [Civilization.VIK]: "Vikings",
+    [Civilization.SCO]: "Scots",
 };
