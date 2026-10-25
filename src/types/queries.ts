@@ -3,7 +3,7 @@ import { Civilization } from "./civilization";
 /**
  * Fields the build results can be sorted by (always descending).
  */
-export type BuildOrderByField = "score" | "timeCreated" | "views" | "likes";
+export type BuildOrderByField = "score" | "scoreAllTime" | "timeCreated" | "views" | "likes";
 
 export class BuildQuery {
     /** Filter by civilization (3-letter code). */

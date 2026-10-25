@@ -9,6 +9,7 @@ import db from "../db";
 export class BuildController extends Controller {
     /**
      * Get the first 10 builds meeting the criteria in the query parameters.
+     * Only published builds are listed; drafts never are.
      * Get your builds by providing your user id as the author parameter.
      * Results are capped at 10 and there is no pagination.
      * By default, returns the 10 most recent builds.
@@ -17,13 +18,22 @@ export class BuildController extends Controller {
     @Get("/")
     @SuccessResponse("200", "OK")
     public async getBuilds(@Queries() q: BuildQuery): Promise<BuildOrders | OverlayBuildOrderOrders> {
-        let query = db.collection("builds").limit(10);
+        // Published builds only, as on the site. Without this a quarter to a half
+        // of any list were unpublished drafts, which the site never shows and an
+        // author has not released, and aoe4guides.com now renders these lists
+        // itself when the browser cannot read Firestore (Googlebot, blocked
+        // reCAPTCHA).
+        let query = db.collection("builds").where("isDraft", "==", false).limit(10);
 
+        // Equality, not a one-element "in": every list query then has the shape the
+        // site itself runs (isDraft + one field + a sort), which Firestore serves by
+        // merging the two-field indexes in the site repo's firestore.indexes.json. There are no
+        // three-field composites to fall back on.
         if (q.civ)
-            query = query.where("civ", "in", [q.civ]);
+            query = query.where("civ", "==", q.civ);
 
         if (q.author)
-            query = query.where("authorUid", "in", [q.author]);
+            query = query.where("authorUid", "==", q.author);
 
         if (q.orderBy)
             query = query.orderBy(q.orderBy, "desc");

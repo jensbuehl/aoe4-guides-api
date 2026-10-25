@@ -72,7 +72,7 @@ then contradict each other, which is worse than one copy behind a link.
 - ✅ REST API endpoints for build orders
 - ✅ Support for all AoE4 civilizations (24 total)
 - ✅ Filtering by civilization and author
-- ✅ Sorting by score, creation time, views, likes
+- ✅ Sorting by score, all-time score, creation time, views, likes
 - ✅ Overlay format support for build order tools
 - ✅ User favorites system
 - ✅ Swagger/OpenAPI documentation
