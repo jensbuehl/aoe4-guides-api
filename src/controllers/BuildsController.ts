@@ -23,7 +23,17 @@ export class BuildController extends Controller {
         // author has not released, and aoe4guides.com now renders these lists
         // itself when the browser cannot read Firestore (Googlebot, blocked
         // reCAPTCHA).
-        let query = db.collection("builds").where("isDraft", "==", false).limit(10);
+        //
+        // And each build order once (aoe4-guides spec 044): an exact duplicate of
+        // another build carries `duplicateOf` and is left out, as on the site.
+        // `== null` never matches a missing field; every build carries the field
+        // since the site's 044 seed. The by-id route below is unfiltered on
+        // purpose: a duplicate's page still opens, and RTS Overlay loads by id.
+        let query = db
+            .collection("builds")
+            .where("isDraft", "==", false)
+            .where("duplicateOf", "==", null)
+            .limit(10);
 
         // Equality, not a one-element "in": every list query then has the shape the
         // site itself runs (isDraft + one field + a sort), which Firestore serves by
